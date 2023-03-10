@@ -1,4 +1,5 @@
 const http = require("http");
+const comment = require("./comment.js");
 
 const host = 'localhost';
 const port = 8000;
@@ -11,11 +12,7 @@ const requestListener = function (request, response) {
                 body += data
             })
             request.on('end', function() {
-                var comment = JSON.parse(body);
-                console.info(JSON.stringify({
-                    "event": "received",
-                    "data": comment
-                }))
+                comment.processComment(JSON.parse(body))
                 response.setHeader("Content-Type", "application/json");
                 response.writeHead(200);
                 response.end(body)
@@ -24,7 +21,6 @@ const requestListener = function (request, response) {
         default:
             response.writeHead(404);
             response.end();
-
     }
 };
 
