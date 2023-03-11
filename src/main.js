@@ -1,30 +1,26 @@
-const http = require("http");
+'use strict';
+const express = require('express');
+const bodyParser = require('body-parser')
 const comment = require("./comment.js");
 
-const host = 'localhost';
-const port = 8000;
+const PORT = 8000;
+const HOST = '0.0.0.0';
 
-const requestListener = function (request, response) {
-    switch (request.url) {
-        case "/api/comments":
-            var body = ''
-            request.on('data', function(data) {
-                body += data
-            })
-            request.on('end', function() {
-                comment.processComment(JSON.parse(body))
-                response.setHeader("Content-Type", "application/json");
-                response.writeHead(200);
-                response.end(body)
-            })
-            break
-        default:
-            response.writeHead(404);
-            response.end();
-    }
-};
+const app = express();
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
-const server = http.createServer(requestListener);
-server.listen(port, host, () => {
-    console.info(`Server is running on http://${host}:${port}`);
+// ENDPOINTS
+app.get('/', (req, res) => {
+  res.send('Up');
+});
+
+app.post('/api/comments', (req, res) => {
+  comment.processComment(req.body)
+  res.send(req.body);
+});
+
+
+app.listen(PORT, HOST, () => {
+  console.log(`Running on http://${HOST}:${PORT}`);
 });
