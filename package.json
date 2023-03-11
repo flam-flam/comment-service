@@ -1,11 +1,12 @@
 {
     "name": "comment-service",
-    "version": "0.1.0",
-    "description": "Comment service @ Flamboyance of Flamingos",
-    "author": "github.com/flam-flam",
-    "main": "src/main.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/flam-flam/comment-service"
+    },
+    "main": "src/server.js",
     "scripts": {
-        "start": "node src/main.js"
+        "start": "node src/server.js"
     },
     "dependencies": {
         "body-parser": "^1.20.2",
