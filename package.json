@@ -1,6 +1,5 @@
 {
     "name": "comment-service",
-    "version": "0.1.0",
     "description": "Comment service @ Flamboyance of Flamingos",
     "author": "github.com/flam-flam",
     "main": "src/main.js",
