@@ -1,7 +1,17 @@
 # comment-service
 Service listening for comment objects via an API endpoint and saving them to an external database
 
-## Running locally
+## Test
+
+Tests are defined in the `tests/` directory, and are executed with `mocha` and `supertest` frameworks. Those are set as dependencies in `package.json`, but are not installed in the resulting docker image.
+
+Run the tests with:
+
+```bash
+npm install && npm test
+```
+
+## Run locally
 
 ```bash
 docker build -t comment-service . && docker run -it -p 8000:8000 comment-service
