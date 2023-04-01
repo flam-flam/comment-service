@@ -19,6 +19,12 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// SWAGGER
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("../swagger.json");
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // ENDPOINTS
 app.get("/", (req, res) => {
   res.send("Up");
