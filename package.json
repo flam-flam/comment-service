@@ -8,8 +8,7 @@
     "main": "src/server.js",
     "scripts": {
         "start": "node src/server.js",
-        "test-orig": "mocha tests/*.js --exit",
-        "test": "jest tests/mongo.js --exit"
+        "test": "jest"
     },
     "dependencies": {
         "body-parser": "^1.20.2",

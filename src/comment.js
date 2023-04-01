@@ -7,10 +7,12 @@ async function processComment(comment) {
       "data": comment
     })
   );
+  
   const commentEntry = new db.Comment({
     _id: comment.id,
-    createdAt: comment.created_at,
+    createdAt: comment.created_utc,
   });
+
   await commentEntry.save();
 }
 
