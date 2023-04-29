@@ -122,7 +122,11 @@ dist
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
+<<<<<<< Updated upstream
 # VSCode settings
+=======
+# VSCode
+>>>>>>> Stashed changes
 .vscode/
 
 # yarn v2
