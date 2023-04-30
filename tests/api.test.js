@@ -15,17 +15,20 @@ describe("Testing endpoints", () => {
 
   beforeAll(async () => {
     const { mongod, connectionString } = await inMemoryDb.startInMemoryDb();
+    console.log("CONNECTION STRING:\n", connectionString)
 
     jest.mock("../src/config.js");
 
     const { AppConfig } = require("../src/config.js");
     AppConfig.dbConnectionString = connectionString;
+    AppConfig.dbName = mongod.instanceInfo.dbName;
 
     const { initialized } = require("../src/server.js"); // start the server
     serverInstance = await initialized;
     db = require("../src/db.js");
 
     mongodInstance = mongod;
+    console.log("MONGOD INSTANCE:\n", mongodInstance);
   });
 
   afterAll(async () => {
@@ -54,6 +57,8 @@ describe("Testing endpoints", () => {
     expect(response.body).toStrictEqual(testComment);
 
     const record = await db.Comment.findById(testComment.id).exec();
+
+    console.log("RECORD:\n", record);
 
     expect(record._id).toBe(testComment.id);
     expect(record.createdAt.toISOString()).toBe(testComment.created_utc);

@@ -12,7 +12,7 @@ const PORT = process.env.EXPRESS_PORT || 8000;
 const HOST = process.env.EXPRESS_HOST || "0.0.0.0";
 
 const initializeAsync = async (dbConfig) => {
-  await mongoose.connect(dbConfig.connectionString);
+  await mongoose.connect(dbConfig.connectionString, { dbName: dbConfig.dbName });
 };
 
 const app = express();

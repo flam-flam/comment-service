@@ -5,7 +5,7 @@ const startInMemoryDb = async () => {
     throw new Error("Failed to import MongoMemoryServer");
   }
 
-  const mongod = await MongoMemoryServer.create();
+  const mongod = await MongoMemoryServer.create({ instance: { dbName: "flam", auth: true } });
   const connectionString = mongod.getUri();
 
   return {
